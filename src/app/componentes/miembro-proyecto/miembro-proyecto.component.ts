@@ -1,27 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Empleado } from 'src/app/modelo/empleado';
-import { Proyecto } from 'src/app/modelo/proyecto';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-miembro-proyecto',
   templateUrl: './miembro-proyecto.component.html',
-  styleUrls: ['./miembro-proyecto.component.css']
+  styles: []
 })
 export class MiembroProyectoComponent implements OnInit {
-  @Input() empleado: Empleado;
-  proyecto: Proyecto;
-  ocultar: Boolean = true;
-
+  @Input() empleado:Empleado;
+  @Output() empleadoDesasignado = new EventEmitter(); 
   constructor() {
-    this.empleado = new Empleado(1,"Juan López","V");
-  }
+    this.empleado = new Empleado(1,"Juan","López","Contabilidad","H");
+   }
 
   ngOnInit() {
   }
 
-  cambiarVisibilidad(){
-    this.ocultar = !this.ocultar;
+  desasignar(){
+    this.empleadoDesasignado.emit(this.empleado);
   }
 
 }

@@ -1,15 +1,11 @@
-<div>
-    <table>
-        <tr>
-            <td>
-                <ng-container *ngIf="empleado.sexo == 'V'; else mujerTemplate">
-                    <img src="https://randomuser.me/api/portraits/men/{{empleado.id}}.jpg" style="width:50px" class="card-img-left mt-2">
-                </ng-container>
-                <ng-template #mujerTemplate>
-                    <img src="https://randomuser.me/api/portraits/women/{{empleado.id}}.jpg" style="width:50px" class="card-img-left mt-2">
-                </ng-template>
-            </td>
-            <td style="padding-left: 100px" class="card-text">{{empleado.nombre}}</td>
-        </tr>
-    </table>
+<div class="row mt-1">
+    <div class="col-2">
+        <img style="width:50%" [src]="empleado.foto()" class="rounded-circle">
+    </div>
+    <div class="col-7">
+        <h4>{{empleado.nombreCompleto()}}</h4>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="desasignar()">Quitar del Proyecto</button>
+    </div>
 </div>
